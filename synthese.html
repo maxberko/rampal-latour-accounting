@@ -15,15 +15,21 @@ h2{font-size:13px;font-weight:600;color:#666;text-transform:uppercase;letter-spa
 .orange{background:#FEF3E2;color:#B45309}
 .bleu{background:#EBF4FD;color:#1A56A0}
 .rouge{background:#FEECEC;color:#C0392B}
+.violet{background:#F3F0FE;color:#5B21B6}
 .carte h3{font-size:14px;font-weight:600;color:#111;margin-bottom:8px;line-height:1.4}
 .carte p{font-size:13px;color:#555;line-height:1.7}
-.encadre{background:#F7F7F5;border-radius:12px;padding:16px 18px;border-left:3px solid #999}
+.encadre{background:#F7F7F5;border-radius:12px;padding:16px 18px;border-left:3px solid #999;margin-bottom:16px}
+.encadre.alerte{background:#FEF3E2;border-left-color:#B45309}
 .encadre p.label{font-size:12px;font-weight:600;color:#444;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.encadre.alerte p.label{color:#B45309}
 .encadre p.corps{font-size:13px;color:#555;line-height:1.7}
+.encadre.alerte p.corps{color:#78350F}
+h3.section{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:24px 0 12px}
 </style>
 </head>
 <body>
 <h2>Synthèse dirigeant — Automatisation comptable Rampal · CDP</h2>
+
 <div class="grille">
   <div class="carte">
     <span class="pastille vert">Constat</span>
@@ -46,9 +52,36 @@ h2{font-size:13px;font-weight:600;color:#666;text-transform:uppercase;letter-spa
     <p>Les prévisions en matières premières, le suivi des impayés et les retraitements du chiffre d'affaires reposent sur des fichiers tableur non audités, non versionnés. En cas d'erreur ou de départ, la traçabilité est nulle. Documenter et migrer ces flux est un préalable à toute automatisation.</p>
   </div>
 </div>
+
 <div class="encadre">
   <p class="label">Recommandation structurante — horizon 18 mois</p>
   <p class="corps">Lancer les automatisations immédiates CDP en parallèle du chantier de facturation électronique. Ne pas engager de budget sur un progiciel de gestion intégré unifié avant d'avoir documenté les procédures existantes et stabilisé les flux actuels. La migration vers un outil groupe (Odoo en déploiement complet ou Sage X3) reste la cible à 18 mois — mais pas avant d'avoir résolu la dette tableur et le risque de dépendance humaine.</p>
 </div>
+
+<h3 class="section">Question ouverte — Faut-il migrer vers Pennylane ?</h3>
+
+<div class="grille">
+  <div class="carte">
+    <span class="pastille violet">Ce que Pennylane fait bien</span>
+    <h3>Un outil conçu pour les PME françaises</h3>
+    <p>Pennylane intègre nativement la TVA française, la liasse fiscale et les obligations légales, et propose une interface partagée entre le client et l'expert-comptable. Pour CDP, dont la stack actuelle est un empilement de Sage manuel, la promesse d'un outil unique et collaboratif est séduisante.</p>
+  </div>
+  <div class="carte">
+    <span class="pastille rouge">Limite structurelle</span>
+    <h3>Pennylane ne couvre pas les flux industriels</h3>
+    <p>Dès qu'on a des flux B2B complexes, de la sous-traitance, des achats de matières premières avec rapprochement bon de livraison / facture, et une logistique intégrée, on touche les limites du produit. LSI et Quadra chez Rampal existent précisément parce que la gestion industrielle dépasse ce que Sage Compta ou Pennylane peuvent absorber seuls.</p>
+  </div>
+  <div class="carte">
+    <span class="pastille orange">Contrainte externe</span>
+    <h3>Le cabinet comptable doit être partant</h3>
+    <p>Pennylane repositionne l'expert-comptable comme utilisateur de la plateforme — ce qui suppose que le cabinet soit compatible et partant pour changer ses propres outils de travail. Ce n'est pas acquis, et forcer la migration sans leur accord crée plus de friction qu'elle n'en résout.</p>
+  </div>
+</div>
+
+<div class="encadre alerte">
+  <p class="label">Verdict — Pennylane : ni rejeté ni prioritaire</p>
+  <p class="corps">Pennylane peut être pertinent uniquement pour CDP, comme remplacement de Sage Compta sur les flux simples (ventes, e-commerce, fournisseurs transport). Pour Rampal, la réponse est ailleurs. Surtout : le problème de Rampal / CDP n'est pas un problème de logiciel — c'est un problème de processus non documentés, de dépendance humaine et de dette tableur. Changer d'outil sans avoir résolu ça, c'est migrer le chaos dans un nouvel environnement.</p>
+</div>
+
 </body>
 </html>
