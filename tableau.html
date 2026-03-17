@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableau explicatif — Automatisation comptable</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;padding:24px;color:#222}
+h2{font-size:13px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{background:#F7F7F5}
+th{padding:10px 14px;text-align:left;font-weight:600;font-size:12px;color:#555;border-bottom:1px solid #E5E5E2}
+td{padding:11px 14px;vertical-align:top;border-bottom:1px solid #F0F0ED;line-height:1.65;color:#333}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFAFA}
+.num{font-weight:700;font-size:14px;color:#111;text-align:center}
+.tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.vert{background:#EAF3DE;color:#3B6D11}
+.orange{background:#FEF3E2;color:#B45309}
+.gris{background:#F1EFE8;color:#5F5E5A}
+.col-n{width:36px}
+.col-action{width:18%}
+.col-cat{width:14%}
+.col-effort{width:9%}
+.col-impact{width:9%}
+</style>
+</head>
+<body>
+<h2>Tableau explicatif — Matrice effort / impact</h2>
+<table>
+  <thead>
+    <tr>
+      <th class="col-n">#</th>
+      <th class="col-action">Action</th>
+      <th class="col-cat">Catégorie</th>
+      <th class="col-effort">Effort</th>
+      <th class="col-impact">Impact</th>
+      <th>Explication</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">1</td>
+      <td>Connecteur Prestashop → Sage Compta (CDP)</td>
+      <td><span class="tag vert">Gain immédiat</span></td>
+      <td>Faible</td><td>Élevé</td>
+      <td>Aujourd'hui, Gaëlle ressaisit manuellement dans Sage Compta chaque vente issue de Prestashop. Un connecteur natif ou un pont applicatif supprimerait cette double saisie quotidienne, sans remise en cause de l'architecture logicielle existante.</td>
+    </tr>
+    <tr>
+      <td class="num">2</td>
+      <td>Rapprochement bancaire automatisé (CDP)</td>
+      <td><span class="tag vert">Gain immédiat</span></td>
+      <td>Faible</td><td>Élevé</td>
+      <td>Les encaissements CDP transitent par quatre canaux distincts (carte bancaire, Paypal, Amazon, Stripe), tous réconciliés à la main. Ces plateformes disposent d'interfaces de programmation documentées permettant d'automatiser les rapprochements, pour un gain estimé à trois ou quatre heures par semaine.</td>
+    </tr>
+    <tr>
+      <td class="num">3</td>
+      <td>Suppression du retraitement tableur sur le CA Retail (Rampal)</td>
+      <td><span class="tag vert">Gain immédiat</span></td>
+      <td>Faible–Moyen</td><td>Élevé</td>
+      <td>Aurélie passe actuellement par un fichier tableur intermédiaire pour intégrer le chiffre d'affaires des boutiques depuis Odoo vers LSI. Ce retraitement manuel est un point de fragilité : une erreur de saisie ou un fichier corrompu peut fausser les données comptables. Un flux direct Odoo → LSI est techniquement accessible et supprimerait ce risque.</td>
+    </tr>
+    <tr>
+      <td class="num">4</td>
+      <td>Documentation des procédures d'Aurélie et de Gaëlle</td>
+      <td><span class="tag gris">Préalable</span></td>
+      <td>Faible</td><td>Moyen</td>
+      <td>L'ensemble des flux comptables des deux entités repose sur deux personnes sans suppléant ni procédure écrite. En cas de départ ou d'absence prolongée, la continuité d'activité serait compromise. Documenter ces procédures est un préalable indispensable à toute automatisation, et un investissement de faible coût pour un risque opérationnel élevé.</td>
+    </tr>
+    <tr>
+      <td class="num">5</td>
+      <td>Facturation électronique obligatoire 2026</td>
+      <td><span class="tag orange">Chantier structurant</span></td>
+      <td>Moyen</td><td>Critique</td>
+      <td>La réglementation française impose la dématérialisation des factures entre entreprises à compter de 2026. Ce chantier de mise en conformité n'est pas abordé dans le diagnostic, alors qu'il impose des choix techniques structurants — notamment le référencement auprès d'une plateforme de dématérialisation partenaire agréée par l'État. Ce sujet doit être engagé dès maintenant pour ne pas subir la contrainte dans l'urgence.</td>
+    </tr>
+    <tr>
+      <td class="num">6</td>
+      <td>Migration vers un progiciel de gestion intégré unifié</td>
+      <td><span class="tag orange">Chantier structurant</span></td>
+      <td>Élevé</td><td>Élevé</td>
+      <td>Rampal et CDP fonctionnent sur deux architectures logicielles incompatibles (LSI/Quadra d'un côté, Sage 100/Sage Compta de l'autre), ce qui rend impossible toute vision consolidée du groupe. Une migration vers un outil commun est la cible logique à dix-huit mois — mais elle ne doit être engagée qu'après avoir stabilisé les flux actuels et documenté les procédures existantes.</td>
+    </tr>
+    <tr>
+      <td class="num">7</td>
+      <td>Dématérialisation des bons de réception papier</td>
+      <td><span class="tag gris">Secondaire</span></td>
+      <td>Faible</td><td>Faible–Moyen</td>
+      <td>Les réceptions de marchandises en logistique sont aujourd'hui confirmées sur support papier, ce qui ralentit la comptabilisation des factures fournisseurs. La mise en place d'un bon de réception numérique améliorerait la fluidité du processus, sans être une priorité au regard des autres chantiers identifiés.</td>
+    </tr>
+    <tr>
+      <td class="num">8</td>
+      <td>Automatisation des commandes fournisseurs B2B (CDP)</td>
+      <td><span class="tag orange">Chantier structurant</span></td>
+      <td>Moyen</td><td>Élevé</td>
+      <td>Les commandes B2B de CDP sont aujourd'hui saisies manuellement à réception des demandes par messagerie ou téléphone. Un portail de commande en ligne ou un échange de données informatisé permettrait de réduire ce travail de saisie et de fiabiliser les données. L'opportunité dépend du volume de commandes et du niveau d'équipement des clients de CDP.</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthèse dirigeant — Automatisation comptable</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;padding:24px;color:#222}
+h2{font-size:13px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px}
+.grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:16px}
+.carte{background:#fff;border:1px solid #E8E8E5;border-radius:12px;padding:16px 18px}
+.pastille{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.vert{background:#EAF3DE;color:#3B6D11}
+.orange{background:#FEF3E2;color:#B45309}
+.bleu{background:#EBF4FD;color:#1A56A0}
+.rouge{background:#FEECEC;color:#C0392B}
+.carte h3{font-size:14px;font-weight:600;color:#111;margin-bottom:8px;line-height:1.4}
+.carte p{font-size:13px;color:#555;line-height:1.7}
+.encadre{background:#F7F7F5;border-radius:12px;padding:16px 18px;border-left:3px solid #999}
+.encadre p.label{font-size:12px;font-weight:600;color:#444;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.encadre p.corps{font-size:13px;color:#555;line-height:1.7}
+</style>
+</head>
+<body>
+<h2>Synthèse dirigeant — Automatisation comptable Rampal · CDP</h2>
+<div class="grille">
+  <div class="carte">
+    <span class="pastille vert">Constat</span>
+    <h3>Deux entités, deux niveaux de maturité opposés</h3>
+    <p>Rampal dispose d'une chaîne partiellement automatisée (LSI → Quadra, protocole EBICS). La Compagnie de Provence fonctionne quasi entièrement en saisie manuelle. Le risque opérationnel est concentré sur deux personnes sans suppléant documenté : Aurélie (Rampal) et Gaëlle (CDP).</p>
+  </div>
+  <div class="carte">
+    <span class="pastille orange">Urgence 2026</span>
+    <h3>La facturation électronique obligatoire n'est pas dans le radar</h3>
+    <p>La dématérialisation des factures entre entreprises devient obligatoire dès 2026 en France. Ce chantier de mise en conformité est absent du diagnostic — il contraint pourtant directement les flux fournisseurs et clients des deux entités et impose le choix d'une plateforme de dématérialisation partenaire agréée par l'État.</p>
+  </div>
+  <div class="carte">
+    <span class="pastille bleu">Priorités immédiates</span>
+    <h3>3 actions à fort retour pour CDP</h3>
+    <p>① Connecteur natif Prestashop → Sage Compta (supprime la saisie quotidienne de Gaëlle). ② Automatisation des rapprochements Stripe / Paypal / Amazon via leurs interfaces de programmation. ③ Suppression du retraitement tableur sur le chiffre d'affaires Retail chez Rampal (flux direct Odoo → LSI). Ces 3 actions libèrent environ 1,5 équivalent temps plein par semaine.</p>
+  </div>
+  <div class="carte">
+    <span class="pastille rouge">Risque</span>
+    <h3>Le tableur comme colonne vertébrale : une dette cachée</h3>
+    <p>Les prévisions en matières premières, le suivi des impayés et les retraitements du chiffre d'affaires reposent sur des fichiers tableur non audités, non versionnés. En cas d'erreur ou de départ, la traçabilité est nulle. Documenter et migrer ces flux est un préalable à toute automatisation.</p>
+  </div>
+</div>
+<div class="encadre">
+  <p class="label">Recommandation structurante — horizon 18 mois</p>
+  <p class="corps">Lancer les automatisations immédiates CDP en parallèle du chantier de facturation électronique. Ne pas engager de budget sur un progiciel de gestion intégré unifié avant d'avoir documenté les procédures existantes et stabilisé les flux actuels. La migration vers un outil groupe (Odoo en déploiement complet ou Sage X3) reste la cible à 18 mois — mais pas avant d'avoir résolu la dette tableur et le risque de dépendance humaine.</p>
+</div>
+</body>
+</html>
