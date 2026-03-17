@@ -33,37 +33,53 @@ Le groupe souffre de trois problèmes structurels :
 
 ## Analyse détaillée — Les 8 chantiers identifiés
 
-### Gains immédiats (effort faible, impact élevé)
+### Gains immédiats — avec réserves
 
 **1. Connecteur Prestashop → Sage Compta (CDP)**
-Gaëlle ressaisit manuellement dans Sage Compta chaque vente issue de Prestashop. Un connecteur natif ou un pont applicatif supprimerait cette double saisie quotidienne sans remise en cause de l'architecture existante.
+Gaëlle ressaisit manuellement dans Sage Compta chaque vente issue de Prestashop. Un connecteur natif ou un pont applicatif supprimerait cette double saisie quotidienne.
+
+> **Réalité terrain.** Le label "effort faible" suppose qu'un connecteur compatible existe pour les versions exactes de Prestashop et Sage Compta utilisées par CDP. Ce n'est pas vérifié. L'écosystème des connecteurs Prestashop → Sage est fragmenté : les modules tiers du marketplace Prestashop ont des taux de maintenance inégaux et des limitations sur les plans comptables personnalisés. Si les versions sont anciennes ou si le plan comptable de Gaëlle comporte des spécificités, il faudra un développement sur mesure (intégrateur Sage, 5 à 15 jours de prestation, 5 000–15 000 €). Le "gain immédiat" peut donc prendre 2 à 4 mois entre le cadrage, le choix du connecteur, les tests et la mise en production. Prévoir aussi un temps de validation comptable post-migration où Gaëlle fait la double saisie en parallèle.
 
 **2. Rapprochement bancaire automatisé (CDP)**
-Les encaissements CDP transitent par quatre canaux (carte bancaire, Paypal, Amazon, Stripe), tous réconciliés à la main. Ces plateformes disposent d'API documentées. Gain estimé : 3 à 4 h/semaine.
+Les encaissements CDP transitent par quatre canaux (carte bancaire, Paypal, Amazon, Stripe), tous réconciliés à la main. Ces plateformes disposent d'API documentées.
+
+> **Réalité terrain.** Dire que "les API existent" ne suffit pas. Chaque plateforme a sa propre logique de remontée des transactions (Stripe raisonne en paiements, Amazon en settlements avec des décalages de 14 jours, Paypal mélange les devises). Le rapprochement automatisé ne consiste pas à brancher quatre API — il faut un outil de réconciliation intermédiaire (ou un développement spécifique) capable de normaliser les formats, gérer les décalages temporels, les frais de commission, les remboursements et les litiges. Le gain de "3 à 4 h/semaine" est une estimation non mesurée : il faudrait d'abord chronomètrer le temps réel passé par Gaëlle sur cette tâche. Un outil type Bridge, Qonto ou un module Sage dédié peut couvrir une partie du besoin, mais rarement les quatre canaux d'un coup. Budget réaliste : 3 000–10 000 € + 2 à 3 mois de mise en place. Le rapprochement 100% automatique est un objectif rarement atteint — viser 80% de lettrage automatique serait déjà un bon résultat.
 
 **3. Suppression du retraitement tableur CA Retail (Rampal)**
-Aurélie passe par un fichier tableur intermédiaire pour intégrer le CA des boutiques depuis Odoo vers LSI. Un flux direct Odoo → LSI est techniquement accessible et supprimerait ce point de fragilité.
+Aurélie passe par un fichier tableur intermédiaire pour intégrer le CA des boutiques depuis Odoo vers LSI.
+
+> **Réalité terrain.** Un "flux direct Odoo → LSI" suppose que les deux systèmes peuvent communiquer. LSI est un progiciel de gestion industrielle dont les capacités d'import/export varient fortement selon la version et le paramétrage. Il faudra probablement un développement d'interface (fichier plat, API si disponible, ou script d'import). Le risque principal : le tableur intermédiaire d'Aurélie ne fait peut-être pas que transférer des données — il peut aussi appliquer des retraitements, des regroupements ou des corrections que le flux direct ne reproduira pas sans spécification précise. Avant de supprimer le tableur, il faut documenter exactement ce qu'il fait. Budget : dépend entièrement de l'intégrateur LSI et de la complexité des retraitements. Délai : 1 à 3 mois.
 
 ### Préalable indispensable
 
 **4. Documentation des procédures d'Aurélie et de Gaëlle**
-Aucune procédure écrite n'existe. Documenter les flux est un prérequis à toute automatisation et un investissement de faible coût face à un risque opérationnel élevé.
+Aucune procédure écrite n'existe. Documenter les flux est un prérequis à toute automatisation.
 
-### Chantiers structurants (effort moyen à élevé, impact élevé)
+> **Réalité terrain.** C'est le chantier le moins cher et le moins risqué, mais aussi celui qui a le plus de chances de ne jamais aboutir. Documenter ses propres procédures est une tâche ingrate que les opérationnels repoussent indéfiniment. Il faut un tiers (consultant, stagiaire, collègue) qui s'assoit à côté d'Aurélie et Gaëlle pendant 2 à 3 jours chacune et rédige pour elles. Sans cette contrainte externe, la documentation restera une ligne dans un plan d'action. Budget : quasi nul en interne, ou 2 000–4 000 € si externalisé.
+
+### Chantiers structurants
 
 **5. Facturation électronique obligatoire 2026**
-Mise en conformité légale non négociable. Impose le choix d'une plateforme de dématérialisation partenaire (PDP) agréée par l'État. Ce sujet doit être engagé immédiatement.
+Mise en conformité légale non négociable. Impose le choix d'une plateforme de dématérialisation partenaire (PDP) agréée par l'État.
+
+> **Réalité terrain.** Le calendrier réglementaire a déjà glissé plusieurs fois (initialement prévu en 2024). L'obligation de réception est effective au 1er septembre 2026 pour toutes les entreprises ; l'obligation d'émission est échelonnée selon la taille. Il faut vérifier dans quelle catégorie tombent Rampal et CDP. Le choix d'une PDP est un sujet à part entière : le marché est encore jeune, les offres évoluent vite, et le risque est de s'engager avec un acteur qui n'obtiendra pas ou ne maintiendra pas son agrément. L'expert-comptable est le premier interlocuteur pour ce choix — pas l'éditeur de logiciel. Budget : variable selon la PDP (abonnement mensuel, 50–300 €/mois/entité). Délai de mise en conformité : 3 à 6 mois.
 
 **6. Migration vers un progiciel de gestion intégré unifié**
-Cible logique à 18 mois (Odoo complet ou Sage X3). Ne doit être engagée qu'après stabilisation des flux actuels et documentation des procédures.
+Cible logique à 18 mois (Odoo complet ou Sage X3).
+
+> **Réalité terrain.** C'est le chantier le plus risqué et le plus coûteux de la liste. Une migration ERP pour deux entités avec des flux industriels, c'est un projet à 6–12 mois de mise en œuvre réelle (pas 18 mois de "cible" — 18 mois c'est le début du projet, pas la fin). Budget typique pour une PME industrielle : 50 000–150 000 € (intégrateur + licences + formation + migration de données). Le taux d'échec ou de dérapage des projets ERP en PME est bien documenté : les délais doublent fréquemment. Ce chantier ne doit être engagé que si le groupe a la capacité managériale et financière de le porter — et surtout pas en même temps que les autres chantiers. La recommandation "après stabilisation des flux" est correcte mais insuffisante : il faut aussi un sponsor interne fort et un budget validé.
 
 **8. Automatisation des commandes fournisseurs B2B (CDP)**
-Les commandes B2B sont saisies manuellement à réception (messagerie, téléphone). Un portail en ligne ou un EDI réduirait ce travail. L'opportunité dépend du volume B2B.
+Les commandes B2B sont saisies manuellement à réception (messagerie, téléphone). Un portail en ligne ou un EDI réduirait ce travail.
+
+> **Réalité terrain.** L'EDI suppose que les clients B2B de CDP soient équipés et volontaires pour changer leurs habitudes. Pour une PME, c'est rarement le cas — les clients commandent par email ou téléphone parce que ça leur convient. Un portail de commande en ligne est possible mais ne sera adopté que si les clients y trouvent un intérêt (historique, suivi, tarifs). Le ROI dépend entièrement du volume : si CDP traite 10 commandes B2B par semaine, l'automatisation ne se justifie pas. Si c'est 50+, oui. Ce volume n'est pas connu. Budget portail : 10 000–30 000 € (développement + intégration Sage). Ne pas engager avant d'avoir mesuré le volume réel.
 
 ### Amélioration secondaire
 
 **7. Dématérialisation des bons de réception papier**
-Les réceptions logistiques sont confirmées sur papier. Un bon de réception numérique améliorerait la fluidité, sans être prioritaire.
+Les réceptions logistiques sont confirmées sur papier. Un bon de réception numérique améliorerait la fluidité.
+
+> **Réalité terrain.** Chantier simple en apparence, mais qui touche aux habitudes terrain (magasiniers, logistique). L'adoption dépend de l'équipement (tablettes, scanners) et de la formation. Peut s'intégrer naturellement dans le projet ERP (item 6) plutôt que d'être traité isolément. Ne pas en faire un projet à part.
 
 ---
 
@@ -79,13 +95,18 @@ L'hypothèse d'une migration vers Pennylane a été analysée :
 
 ---
 
-## Feuille de route recommandée
+## Feuille de route recommandée — version réaliste
 
-| Horizon | Actions |
-|---|---|
-| **Maintenant** | Documenter les procédures Aurélie & Gaëlle. Lancer les 3 automatisations CDP (connecteur Prestashop, rapprochements bancaires, flux Odoo → LSI). |
-| **Dans 3 mois** | Engager le chantier facturation électronique 2026 (sélection PDP). |
-| **À 18 mois** | Évaluer la migration vers un progiciel unifié (Odoo complet ou Sage X3) — uniquement après stabilisation des flux et résolution de la dette tableur. |
+| Horizon | Actions | Budget indicatif | Risque principal |
+|---|---|---|---|
+| **Mois 1–2** | Documenter les procédures Aurélie & Gaëlle (avec un tiers dédié, pas en auto-documentation). | 2 000–4 000 € | Ne sera pas fait si personne ne le porte. |
+| **Mois 2–4** | Cadrer le connecteur Prestashop → Sage (audit versions, choix module, test). | 5 000–15 000 € | Incompatibilité de versions, plan comptable non standard. |
+| **Mois 3–6** | Rapprochement bancaire : choisir un outil de réconciliation, brancher les canaux un par un. Viser 80% de lettrage auto. | 3 000–10 000 € | Complexité des formats Amazon/Paypal, gestion des écarts. |
+| **Mois 3–6** | Facturation électronique : travailler avec l'expert-comptable sur le choix d'une PDP. | 50–300 €/mois/entité | Marché jeune, risque de mauvais choix de prestataire. |
+| **Mois 4–6** | Flux Odoo → LSI : documenter les retraitements du tableur d'Aurélie, puis spécifier l'interface. | Dépend de l'intégrateur LSI | Le tableur cache peut-être des retraitements non documentés. |
+| **Mois 12–24** | Migration ERP unifiée — uniquement si les flux sont stabilisés, les procédures documentées, et le budget validé. | 50 000–150 000 € | Projet structurant à fort risque de dérapage. |
+
+**Budget total réaliste (hors ERP)** : 15 000–40 000 € sur 6 mois, en priorisant les chantiers un par un plutôt qu'en parallèle. Le gain de "1,5 ETP/semaine" annoncé dans la synthèse est un ordre de grandeur optimiste — le gain réel ne sera mesurable qu'après mise en production de chaque brique.
 
 ---
 
